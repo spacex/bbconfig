@@ -1,0 +1,3 @@
+This is a configuration interface for buildbot written using the Django framework 1.3
+
+I aim to make it as extensible and flexibe as possible using just the django admin interface, and then work to make a full-fledged web interface for it.
