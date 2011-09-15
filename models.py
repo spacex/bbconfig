@@ -124,6 +124,7 @@ class Scheduler(models.Model):
 
 class Property(models.Model):
 	project = models.ForeignKey(Project, null=True)
+	builder = models.ForeignKey(Builder, null=True)
 	scheduler = models.ForeignKey(Scheduler, null=True)
 	name = models.CharField(max_length=50)
 	value = models.CharField(max_length=300)

@@ -5,6 +5,15 @@ from django.contrib import admin
 #	list_display = ('search', 'replace')
 #	list_filter = ['project','builder']
 
+#class PropertyAdmin(admin.ModelAdmin):
+#	list_display = ('name', 'value')
+#	list_filter = ['project', 'builder', 'scheduler']
+
+class PropertyBuilderInline(admin.TabularInline):
+	model = Property
+	extra = 3
+	exclude = ['project', 'scheduler']
+
 class CommandSearchReplaceBuilderInline(admin.TabularInline):
 	model = CommandSearchReplace
 	extra = 3
@@ -13,7 +22,7 @@ class CommandSearchReplaceBuilderInline(admin.TabularInline):
 class BuilderAdmin(admin.ModelAdmin):
 	list_display = ('builder_name', 'disabled')
 	list_filter = ['project']
-	inlines = [CommandSearchReplaceBuilderInline]
+	inlines = [CommandSearchReplaceBuilderInline, PropertyBuilderInline]
 
 class CommandAdmin(admin.ModelAdmin):
 	list_display = ('project', 'sequence', 'name', 'type', 'work_dir', 'command')
@@ -26,14 +35,10 @@ class HostAdmin(admin.ModelAdmin):
 	list_display = ('hostname', 'builder', 'description')
 	list_filter = ['builder__project']
 
-#class PropertyAdmin(admin.ModelAdmin):
-#	list_display = ('name', 'value')
-#	list_filter = ['project', 'scheduler']
-
 class PropertySchedulerInline(admin.TabularInline):
 	model = Property
 	extra = 3
-	exclude = ['project']
+	exclude = ['project', 'builder']
 
 class SchedulerAdmin(admin.ModelAdmin):
 	list_display = ('name', 'type', 'disabled')
@@ -43,7 +48,7 @@ class SchedulerAdmin(admin.ModelAdmin):
 class PropertyProjectInline(admin.TabularInline):
 	model = Property
 	extra = 3
-	exclude = ['scheduler']
+	exclude = ['builder', 'scheduler']
 
 class CommandSearchReplaceProjectInline(admin.TabularInline):
 	model = CommandSearchReplace
