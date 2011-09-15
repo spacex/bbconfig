@@ -105,7 +105,7 @@ class Scheduler(models.Model):
 	#SAN - branch
 	branch = models.CharField(max_length=100, null=True, blank=True)
 	#SA - treeStableTimer
-	branch_treeStableTimer = models.PositiveIntegerField(null=True, blank=True)
+	treeStableTimer = models.PositiveIntegerField(null=True, blank=True)
 	#SA - fileIsImportant(func), change_filter, N if onlyIfChanged
 	#D - models.ForeignKey(Scheduler, null=True)
 	dependent_upstream = models.ForeignKey('self', null=True, blank=True)
