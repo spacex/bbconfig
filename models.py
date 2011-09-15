@@ -120,6 +120,7 @@ class Scheduler(models.Model):
 	#J - jobdir
 	try_jobdir = models.CharField(max_length=255, null=True, blank=True)
 	#U - userpass, port
+	try_port = models.PositiveIntegerField(null=True, blank=True)
 	try_user = models.CharField(max_length=50, null=True, blank=True)
 	try_password = models.CharField(max_length=50, null=True, blank=True)
 
