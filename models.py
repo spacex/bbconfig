@@ -103,22 +103,24 @@ class Scheduler(models.Model):
 	builderNames = models.ManyToManyField(Builder)#, limit_choices_to = {'project': project} )
 
 	#SA - branch, treeStableTimer
-	branch = models.CharField(max_length=100, blank=True)
-	treeStableTimer = models.PositiveIntegerField()
+	branch_branch = models.CharField(max_length=100, blank=True)
+	branch_treeStableTimer = models.PositiveIntegerField(blank=True)
 	#SA - fileIsImportant(func), change_filter, N if onlyIfChanged
 	#D - models.ForeignKey(Scheduler, null=True)
-	upstream = models.ForeignKey('self', null=True)
+	dependent_upstream = models.ForeignKey('self', null=True)
 	#P - periodicBuildTimer
-	periodicBuildTimer = models.PositiveIntegerField()
+	periodic_periodicBuildTimer = models.PositiveIntegerField(blank=True)
 	#N - minute, hour, dayOfMonth, month, dayOfWeek
-	minute = models.PositiveIntegerField()
-	hour = models.PositiveIntegerField()
-	dayOfMonth = models.PositiveIntegerField()
-	month = models.PositiveIntegerField()
-	dayOfWeek = models.PositiveIntegerField()
+	nightly_minute = models.PositiveIntegerField(blank=True)
+	nightly_hour = models.PositiveIntegerField(blank=True)
+	nightly_dayOfMonth = models.PositiveIntegerField(blank=True)
+	nightly_month = models.PositiveIntegerField(blank=True)
+	nightly_dayOfWeek = models.PositiveIntegerField(blank=True)
 	#J - jobdir
-	jobdir = models.CharField(max_length=255, blank=True)
+	try_jobdir = models.CharField(max_length=255, blank=True)
 	#U - userpass, port
+	try_user = models.CharField(max_length=50, blank=True)
+	try_password = models.CharField(max_length=50, blank=True)
 
 class Property(models.Model):
 	project = models.ForeignKey(Project, null=True)
