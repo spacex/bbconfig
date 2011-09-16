@@ -100,7 +100,7 @@ class Scheduler(models.Model):
 	name = models.CharField(max_length=50, blank=True)
 	type = models.CharField(max_length=1, choices=SCHEDULER_CHOICES, default='S')
 	disabled = models.BooleanField(default=False)
-	builderNames = models.ManyToManyField(Builder)#, limit_choices_to = {'project': project} )
+	builderNames = models.ManyToManyField(Builder, blank=True)#, limit_choices_to = {'project': project} )
 
 	#SAN - branch
 	branch = models.CharField(max_length=100, null=True, blank=True)
