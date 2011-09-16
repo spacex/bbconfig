@@ -125,9 +125,9 @@ class Scheduler(models.Model):
 	try_password = models.CharField(max_length=50, null=True, blank=True)
 
 class Property(models.Model):
-	project = models.ForeignKey(Project, null=True)
-	builder = models.ForeignKey(Builder, null=True)
-	scheduler = models.ForeignKey(Scheduler, null=True)
+	project = models.ForeignKey(Project, null=True, blank=True)
+	builder = models.ForeignKey(Builder, null=True, blank=True)
+	scheduler = models.ForeignKey(Scheduler, null=True, blank=True)
 	name = models.CharField(max_length=50)
 	value = models.CharField(max_length=300)
 
