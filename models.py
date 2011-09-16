@@ -28,12 +28,6 @@ class Builder(models.Model):
 	def __unicode__(self):
 		return self.builder_name + ' (' + self.project.name + ')'
 
-class CommandSearchReplace(models.Model):
-	project = models.ForeignKey(Project, null=True)
-	builder = models.ForeignKey(Builder, null=True)
-	search = models.CharField(max_length=50)
-	replace = models.CharField(max_length=300)
-
 class Command(models.Model):
 	TYPE_CHOICES = (
 		('S', 'Shell'),

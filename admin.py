@@ -1,9 +1,5 @@
-from bbconfig.models import Project, Builder, Command, Host, CommandSearchReplace, Scheduler, Property
+from bbconfig.models import Project, Builder, Command, Host, Scheduler, Property
 from django.contrib import admin
-
-#class CommandSearchReplaceAdmin(admin.ModelAdmin):
-#	list_display = ('search', 'replace')
-#	list_filter = ['project','builder']
 
 #class PropertyAdmin(admin.ModelAdmin):
 #	list_display = ('name', 'value')
@@ -14,15 +10,10 @@ class PropertyBuilderInline(admin.TabularInline):
 	extra = 3
 	exclude = ['project', 'scheduler']
 
-class CommandSearchReplaceBuilderInline(admin.TabularInline):
-	model = CommandSearchReplace
-	extra = 3
-	exclude = ['project']
-
 class BuilderAdmin(admin.ModelAdmin):
 	list_display = ('builder_name', 'disabled')
 	list_filter = ['project']
-	inlines = [CommandSearchReplaceBuilderInline, PropertyBuilderInline]
+	inlines = [PropertyBuilderInline]
 
 class CommandAdmin(admin.ModelAdmin):
 	list_display = ('project', 'sequence', 'name', 'type', 'work_dir', 'command')
@@ -50,16 +41,10 @@ class PropertyProjectInline(admin.TabularInline):
 	extra = 3
 	exclude = ['builder', 'scheduler']
 
-class CommandSearchReplaceProjectInline(admin.TabularInline):
-	model = CommandSearchReplace
-	extra = 3
-	exclude = ['builder']
-
 class ProjectAdmin(admin.ModelAdmin):
 	list_display = ('name', 'ldap_group', 'url')
-	inlines = [CommandSearchReplaceProjectInline, PropertyProjectInline]
+	inlines = [PropertyProjectInline]
 
-#admin.site.register(CommandSearchReplace, CommandSearchReplaceAdmin)
 #admin.site.register(Property, PropertyAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Builder, BuilderAdmin)
