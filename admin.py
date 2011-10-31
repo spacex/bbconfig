@@ -1,4 +1,4 @@
-from bbconfig.models import Project, Builder, Command, Host, Scheduler, Property
+from bbconfig.models import *
 from django.contrib import admin
 
 #class PropertyAdmin(admin.ModelAdmin):
@@ -10,15 +10,18 @@ class PropertyBuilderInline(admin.TabularInline):
 	extra = 3
 	exclude = ['project', 'scheduler']
 
+class CategoryAdmin(admin.ModelAdmin):
+	pass
+
 class BuilderAdmin(admin.ModelAdmin):
-	list_display = ('builder_name', 'disabled')
-	list_filter = ['project']
+	list_display = ('builder_name', 'disabled', 'category')
+	list_filter = ['project', 'category']
 	inlines = [PropertyBuilderInline]
 
 class CommandAdmin(admin.ModelAdmin):
-	list_display = ('project', 'sequence', 'name', 'type', 'work_dir', 'command')
+	list_display = ('project', 'category', 'sequence', 'name', 'type', 'work_dir', 'command')
 	list_filter = ['project']
-	fields = ['project', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
+	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
 	ordering = ['project', 'sequence']
 	save_as = True
 
@@ -46,6 +49,7 @@ class ProjectAdmin(admin.ModelAdmin):
 	inlines = [PropertyProjectInline]
 
 #admin.site.register(Property, PropertyAdmin)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Builder, BuilderAdmin)
 admin.site.register(Command, CommandAdmin)

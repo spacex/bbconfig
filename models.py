@@ -15,13 +15,24 @@ class Project(models.Model):
 	slaveport = models.PositiveIntegerField()
 	statusport = models.PositiveIntegerField()
 	tryport = models.PositiveIntegerField()
+	#builderNames = models.ManyToManyField(Builder, blank=True)
 
 	def __unicode__(self):
 		return self.name
 
+class Category(models.Model):
+	name = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return self.name
+
+	class Meta:
+		verbose_name_plural = "categories"
+
 class Builder(models.Model):
 	project = models.ForeignKey(Project)
 	builder_name = models.CharField(max_length=50)
+	category = models.ForeignKey(Category, null=True, blank=True)
 	disabled = models.BooleanField(default=False)
 	makeparams = models.CharField(max_length=200, blank=True)
 
@@ -41,6 +52,7 @@ class Command(models.Model):
 		('U', 'Update'),
 	)
 	project = models.ForeignKey(Project)
+	category = models.ForeignKey(Category, null=True, blank=True)
 	name = models.CharField(max_length=50, blank=True)
 	description = models.CharField(max_length=50, blank=True)
 	descriptionDone = models.CharField(max_length=50, blank=True)
@@ -94,6 +106,7 @@ class Scheduler(models.Model):
 	name = models.CharField(max_length=50, blank=True)
 	type = models.CharField(max_length=1, choices=SCHEDULER_CHOICES, default='S')
 	disabled = models.BooleanField(default=False)
+	categories = models.ManyToManyField(Category, blank=True)
 	builderNames = models.ManyToManyField(Builder, blank=True)#, limit_choices_to = {'project': project} )
 
 	#SAN - branch
