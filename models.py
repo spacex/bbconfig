@@ -61,6 +61,7 @@ class Command(models.Model):
 	work_dir = models.CharField(max_length=200, blank=True)
 	#R
 	rcs_mode = models.CharField(max_length=1, choices=RCS_MODE, default='C')
+	rcs_url = models.CharField(max_length=200, blank=True)
 	#SCT
 	command = models.TextField(blank=True)
 	#S
