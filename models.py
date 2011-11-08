@@ -76,7 +76,7 @@ class Command(models.Model):
 	#schedulerNames = models.ManyToManyField(Scheduler)
 
 	def __unicode__(self):
-		return self.project.name + " " + str(self.sequence)
+		return self.project.name + " (" + self.category.name + ")-" + str(self.sequence)
 
 	class Meta:
 		ordering = ['project', 'sequence']
