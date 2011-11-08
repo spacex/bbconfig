@@ -89,8 +89,8 @@ class Host(models.Model):
 	max_builds = models.PositiveIntegerField()
 	description = models.CharField(max_length=50, blank=True)
 
-	class Meta:
-		ordering = ['builder__project']
+	def __unicode__(self):
+		return self.hostname
 
 class Scheduler(models.Model):
 	SCHEDULER_CHOICES = (
