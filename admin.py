@@ -34,8 +34,9 @@ class CommandAdmin(admin.ModelAdmin):
 	save_as = True
 
 class HostAdmin(admin.ModelAdmin):
-	list_display = ('hostname', 'builder', 'description')
+	list_display = ('hostname', 'description')
 	list_filter = ['builder__project']
+	filter_horizontal = ('builder',)
 
 class PropertySchedulerInline(admin.TabularInline):
 	model = Property

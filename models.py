@@ -82,7 +82,7 @@ class Command(models.Model):
 		ordering = ['project', 'sequence']
 
 class Host(models.Model):
-	builder = models.ForeignKey(Builder)
+	builder = models.ManyToManyField(Builder, blank=True)
 	#builder = models.ManyToManyField(Builder)
 	hostname = models.CharField(max_length=50)
 	password = models.CharField(max_length=50)
