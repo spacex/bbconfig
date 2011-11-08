@@ -13,10 +13,18 @@ class PropertyBuilderInline(admin.TabularInline):
 class CategoryAdmin(admin.ModelAdmin):
 	pass
 
+def enable(modeladmin, request, queryset):
+	queryset.update(disabled=0)
+enable.short_description = "Enable selected entries."
+def disable(modeladmin, request, queryset):
+	queryset.update(disabled=1)
+disable.short_description = "Disable selected entries."
+
 class BuilderAdmin(admin.ModelAdmin):
 	list_display = ('builder_name', 'disabled', 'category')
 	list_filter = ['project', 'category']
 	inlines = [PropertyBuilderInline]
+	actions = [enable, disable] 
 
 class CommandAdmin(admin.ModelAdmin):
 	list_display = ('project', 'category', 'sequence', 'name', 'type', 'work_dir', 'command')
@@ -39,6 +47,7 @@ class SchedulerAdmin(admin.ModelAdmin):
 	list_filter = ['project']
 	filter_horizontal = ('builderNames','categories',)
 	inlines = [PropertySchedulerInline]
+	actions = [enable, disable]
 
 class PropertyProjectInline(admin.TabularInline):
 	model = Property
