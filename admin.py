@@ -37,6 +37,7 @@ class PropertySchedulerInline(admin.TabularInline):
 class SchedulerAdmin(admin.ModelAdmin):
 	list_display = ('name', 'type', 'disabled')
 	list_filter = ['project']
+	filter_horizontal = ('builderNames','categories',)
 	inlines = [PropertySchedulerInline]
 
 class PropertyProjectInline(admin.TabularInline):
