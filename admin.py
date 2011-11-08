@@ -29,7 +29,7 @@ class BuilderAdmin(admin.ModelAdmin):
 class CommandAdmin(admin.ModelAdmin):
 	list_display = ('project', 'category', 'sequence', 'name', 'type', 'work_dir', 'command')
 	list_filter = ['project']
-	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
+	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'rcs_url', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
 	ordering = ['project', 'sequence']
 	save_as = True
 
