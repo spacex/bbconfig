@@ -27,10 +27,12 @@ class BuilderAdmin(admin.ModelAdmin):
 	actions = [enable, disable] 
 
 class CommandAdmin(admin.ModelAdmin):
-	list_display = ('project', 'category', 'sequence', 'name', 'type', 'work_dir', 'command')
-	list_filter = ['project']
+	list_display = ('__unicode__', 'sequence', 'name', 'type', 'work_dir', 'command')
+	list_filter = ['project', 'category']
 	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'rcs_url', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
-	ordering = ['project', 'sequence']
+	# For Django 1.4, when all ordering fields are used
+	#ordering = ['project', 'category', 'sequence']
+	ordering = ['sequence']
 	save_as = True
 
 class HostAdmin(admin.ModelAdmin):
