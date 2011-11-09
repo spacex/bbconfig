@@ -21,7 +21,7 @@ def disable(modeladmin, request, queryset):
 disable.short_description = "Disable selected entries."
 
 class BuilderAdmin(admin.ModelAdmin):
-	list_display = ('builder_name', 'disabled', 'category')
+	list_display = ('builder_name', 'disabled', 'project', 'category')
 	list_filter = ['project', 'category']
 	inlines = [PropertyBuilderInline]
 	actions = [enable, disable] 
