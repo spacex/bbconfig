@@ -131,6 +131,9 @@ class Scheduler(models.Model):
 	try_port = models.PositiveIntegerField(null=True, blank=True)
 	try_user = models.CharField(max_length=50, null=True, blank=True)
 	try_password = models.CharField(max_length=50, null=True, blank=True)
+	
+	def __unicode__(self):
+		return self.name
 
 class Property(models.Model):
 	project = models.ForeignKey(Project, null=True, blank=True)
