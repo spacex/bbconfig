@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+BBConfig: {{ project.description }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ project.description }}</h2>
+
+<table border=1>
+<thead>
+<tr>
+  <td>Category</td>
+  <td>Warn</td>
+  <td>Flunk</td>
+  <td>Sequence</td>
+  <td>Type</td>
+  <td>Directory</td>
+  <td>Command</td>
+</tr>
+</thead>
+<tbody>
+	{% for command in ordered_commands %}
+	<tr>
+	<td>{{ command.category }}</td>
+	<td>{{ command.warnOnFail }}</td>
+	<td>{{ command.flunkOnFail }}</td>
+	<td>{{ command.sequence }}</td>
+	<td>{{ command.type }}</td>
+	<td>{{ command.work_dir }}</td>
+	<td>{{ command.command }}</td>
+	</tr>
+	{% endfor %}
+</tbody>
+</table>
+{% endblock %}
