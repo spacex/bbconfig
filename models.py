@@ -69,6 +69,8 @@ class Command(models.Model):
 	#S
 	flunkOnFail = models.BooleanField(default=True)
 	#S
+	haltOnFail = models.BooleanField(default=True)
+	#S
 	alwaysRun = models.BooleanField(default=False)
 	#T
 	timeout = models.PositiveIntegerField(default=0)

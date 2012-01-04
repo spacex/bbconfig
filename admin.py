@@ -29,7 +29,7 @@ class BuilderAdmin(admin.ModelAdmin):
 class CommandAdmin(admin.ModelAdmin):
 	list_display = ('__unicode__', 'sequence', 'name', 'type', 'work_dir', 'command')
 	list_filter = ['project', 'category']
-	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'rcs_url', 'command', 'warnOnFail', 'flunkOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
+	fields = ['project', 'category', 'sequence', 'name', 'type', 'work_dir', 'rcs_mode', 'rcs_url', 'command', 'warnOnFail', 'flunkOnFail', 'haltOnFail', 'alwaysRun', 'timeout', 'description', 'descriptionDone']
 	# For Django 1.4, when all ordering fields are used
 	#ordering = ['project', 'category', 'sequence']
 	ordering = ['sequence']
